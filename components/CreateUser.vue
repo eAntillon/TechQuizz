@@ -2,13 +2,28 @@
   <Card>
     <template #title> Please enter your name: </template>
     <template #content>
-      <InputText class="w-full mb-5" />
+      <div class="field mb-3 flex flex-column">
+        <InputText
+          v-model="value"
+          :class="{ 'p-invalid': nameExists || errorLength }"
+          id="username"
+          aria-describedby="username"
+          @keyup.enter="validateLength"
+        />
+        <small id="username" class="p-error" v-show="errorLength"
+          >The username must be be longer than 3 characters.</small
+        >
+        <small id="username" class="p-error" v-show="nameExists"
+          >Username is not available.</small
+        >
+      </div>
       <div class="flex fle-row gap-4">
         <Button
           label="Play"
           class="w-full p-button-success"
           icon="pi pi-check"
           iconPos="right"
+          @click="startGame"
         />
         <Button
           label="Cancel"
@@ -26,25 +41,65 @@ import Vue from "vue";
 import Card from "primevue/card";
 import Button from "primevue/button/Button";
 import InputText from "primevue/inputtext";
-
-
+import { mapMutations } from "vuex";
 export default Vue.extend({
   name: "Input",
   data() {
     return {
       value: "",
+      nameExists: false,
+      errorLength: false,
     };
   },
-  methods: {
-    onChange(e: Event) {
-      this.value = (e.target as HTMLInputElement).value;
-    },
-  },
   watch: {
-    value(newValue) {
-      this.$emit("input", newValue);
+    async value(newValue) {
+      if (newValue.length > 3) {
+        this.nameExists = await this.validateName(newValue);
+        console.log("compare existent", this.nameExists);
+        return;
+      }
+      this.errorLength = false;
+      this.nameExists = false;
     },
   },
+
+  methods: {
+    async validateName(name: string): Promise<boolean> {
+      const { data, error } = await this.$supabase
+        .from("scores")
+        .select("playername")
+        .eq("playername", name);
+      if (data && data.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    validateLength() {
+      if (this.value.length > 3) {
+        this.errorLength = false;
+        return;
+      }
+      this.errorLength = true;
+    },
+    startGame() {
+      if (this.value.length < 4) {
+        this.errorLength = true;
+        return;
+      }
+      this.errorLength = false;
+      if (!this.errorLength && !this.nameExists) {
+        this.$store.commit("setNewGame", {
+          username: this.value,
+          score: 0,
+          inGame: true,
+        });
+      }
+    },
+    ...mapMutations({
+      toggle: "todos/toggle",
+    }),
+  },
+
   components: {
     Card,
     InputText,

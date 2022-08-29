@@ -27,7 +27,7 @@
             iconPos="right"
             @click="$emit('newGame')"
           />
-          <NuxtLink to="/quizzz" class="no-underline">
+          <NuxtLink to="/leaderboard" class="no-underline">
             <Button
               label="Leaderboard"
               class="w-full sm:w-auto p-button-secondary p-button-lg"
