@@ -2,7 +2,7 @@
   <div>
     <div v-if="!showAnswer">
       <!-- Question -->
-      <CurrentQuestion :question="currentQuestion" />
+      <CurrentQuestion :question="currentQuestion" :questionNumber="currentQuestionIndex+1" :next="nextQuestion" />
     </div>
     <div v-else>
       <!-- Question Answer -->
@@ -22,7 +22,6 @@ export default Vue.extend({
     },
   },
   beforeMount() {
-    console.log("Questions:", this.questions);
     this.currentQuestion = this.questions[this.currentQuestionIndex];
   },
   data() {
@@ -34,10 +33,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    selectAnswer(ans) {
-      this.selectedAnswer = ans;
-      this.showAnswer = true;
-    },
+    
     nextQuestion() {
       this.currentQuestionIndex++;
       this.currentQuestion = this.questions[this.currentQuestionIndex];
@@ -45,12 +41,7 @@ export default Vue.extend({
       this.showAnswer = false;
       this.timeLeft = 30;
     },
-    checkAnswer() {
-      if (this.selectedAnswer === this.currentQuestion.correct_answer) {
-        return true;
-      }
-      return false;
-    },
+    
   },
   components: { CurrentQuestion },
 });

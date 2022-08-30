@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <Card>
+  <div class="w-11 sm:w-8 md:w-6 xl:w-4">
+    <Card class="max-w-max">
       <template #content>
-        <p v-if="$fetchState.pending">Fetching mountains...</p>
+        <p v-if="$fetchState.pending">Fetching mountains</p>
         <Game v-else :questions="questions" />
       </template>
     </Card>
@@ -21,7 +21,6 @@ export default Vue.extend({
   },
   beforeCreate() {
     if (!this.$store.state.user.inGame) {
-      console.log("not in game", this.$store.state.user.inGame);
       this.$router.push("/");
     }
   },
@@ -32,7 +31,6 @@ export default Vue.extend({
       { method: "GET" }
     );
     this.questions = await request.json();
-    console.log(this.questions)
   },
   components: { Game, Card },
 });
