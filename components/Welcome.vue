@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="flex px-4 text-center justify-content-center align-items-center flex-column max-w-min p-0"
+    class="flex px-4 text-center justify-content-center align-items-center flex-column max-w-min p-0 z-4"
   >
     <template #content>
       <div class="flex flex-column justify-content-center align-items-center">
@@ -64,13 +64,5 @@ p {
   color: #2b2c34;
 }
 
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 </style>

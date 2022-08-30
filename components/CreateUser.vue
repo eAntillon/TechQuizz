@@ -88,18 +88,15 @@ export default Vue.extend({
       }
       this.errorLength = false;
       if (!this.errorLength && !this.nameExists) {
-        this.$store.commit("setNewGame", {
+        this.$store.commit("user/setNewGame", {
           username: this.value,
           score: 0,
           inGame: true,
         });
+        this.$router.push("/play");
       }
     },
-    ...mapMutations({
-      toggle: "todos/toggle",
-    }),
   },
-
   components: {
     Card,
     InputText,

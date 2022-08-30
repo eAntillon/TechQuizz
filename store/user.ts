@@ -17,6 +17,9 @@ export const getters = {
   getScore(state: UserInformation): number {
     return state.score;
   },
+  getInGame(state: UserInformation): boolean {
+    return state.inGame;
+  },
 };
 
 export const mutations = {

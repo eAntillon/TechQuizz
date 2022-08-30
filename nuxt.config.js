@@ -42,12 +42,14 @@ export default {
   modules: [
     // Doc: https://www.primefaces.org/primevue/showcase-v2/#/setup
     "primevue/nuxt",
-    ["nuxt-supabase",
-    {
-      supabaseUrl: "https://zbmimsbcbtvfqpnxymht.supabase.co",
-      supabaseKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibWltc2JjYnR2ZnFwbnh5bWh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE3MTUzMDgsImV4cCI6MTk3NzI5MTMwOH0.YGsckZdyO23pbeGKGG8EEUUJOMALEVHEF9zoSBd11iE",
-    }],
+    [
+      "nuxt-supabase",
+      {
+        supabaseUrl: "https://zbmimsbcbtvfqpnxymht.supabase.co",
+        supabaseKey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibWltc2JjYnR2ZnFwbnh5bWh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE3MTUzMDgsImV4cCI6MTk3NzI5MTMwOH0.YGsckZdyO23pbeGKGG8EEUUJOMALEVHEF9zoSBd11iE",
+      },
+    ],
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -59,5 +61,9 @@ export default {
     theme: "lara-light-purple",
     ripple: true,
     // components: [/* What components you want */]
+  },
+  env: {
+    quizz_api_url: "https://quizapi.io/api/v1/questions",
+    api_key: "fzxyQpq5AU7m44sDTYbD424OJ9d4cgjREwCXotAC",
   },
 };
