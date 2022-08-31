@@ -1,7 +1,7 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  target: "static",
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "TechQuizz",
@@ -65,5 +65,8 @@ export default {
   env: {
     quizz_api_url: "https://quizapi.io/api/v1/questions",
     api_key: "fzxyQpq5AU7m44sDTYbD424OJ9d4cgjREwCXotAC",
+  },
+  generate: {
+    fallback: true,
   },
 };
