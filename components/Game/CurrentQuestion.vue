@@ -70,8 +70,8 @@ export default Vue.extend({
       }
     },
     question() {
-      console.log(this.question, this.questionNumber);
-      this.answers = getAnswers(this.question.answers)
+      this.answers = getAnswers(this.question.answers);
+      this.correctAnswer = getCorrectAnswers(this.question.correct_answers)
     },
   },
   data() {
@@ -94,7 +94,6 @@ export default Vue.extend({
       this.score = this.correctAnswer.includes(this.selectedAnswer)
         ? Math.round(1 * this.timeLeft)
         : 0;
-      // check(this.selectedAnswer, this.question.correct_answers);
     },
     startTimer() {
       if (this.timeStart) {

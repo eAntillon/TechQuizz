@@ -2,7 +2,7 @@
   <Card>
     <template #title> Please enter your name: </template>
     <template #content>
-      <div class="field mb-3 flex flex-column">
+      <div class="flex mb-3 field flex-column">
         <InputText
           v-model="value"
           :class="{ 'p-invalid': nameExists || errorLength }"
@@ -17,12 +17,13 @@
           >Username is not available.</small
         >
       </div>
-      <div class="flex fle-row gap-4">
+      <div class="flex gap-4 fle-row">
         <Button
           label="Play"
           class="w-full p-button-success"
           icon="pi pi-check"
           iconPos="right"
+          :disabled="comparingName"
           @click="startGame"
         />
         <Button
@@ -49,13 +50,15 @@ export default Vue.extend({
       value: "",
       nameExists: false,
       errorLength: false,
+      comparingName: false,
     };
   },
   watch: {
     async value(newValue) {
       if (newValue.length > 3) {
+        this.comparingName = true;
         this.nameExists = await this.validateName(newValue);
-        console.log("compare existent", this.nameExists);
+        this.comparingName = false;
         return;
       }
       this.errorLength = false;
@@ -87,7 +90,7 @@ export default Vue.extend({
         return;
       }
       this.errorLength = false;
-      if (!this.errorLength && !this.nameExists) {
+      if (!this.nameExists) {
         this.$store.commit("user/setNewGame", {
           username: this.value,
           score: 0,

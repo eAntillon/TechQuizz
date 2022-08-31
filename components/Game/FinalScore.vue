@@ -1,5 +1,8 @@
 <template>
   <div class="flex flex-column align-items-center justify-content-center">
+    <h3 class="-mb-2">
+      Name: <span class="text-primary">{{ $store.state.user.username }}</span>
+    </h3>
     <div class="flex flex-row mb-3 align-items-center justify-content-center">
       <h2 class="mr-2 text-4xl text-center">
         You scored <span class="text-primary">{{ totalScore }}</span> points!
@@ -10,9 +13,9 @@
         class="w-6rem"
       />
     </div>
-      <Button class="p-button-primary p-button-lg" @click="$router.push('/')">
-        Play again
-      </Button>
+    <Button class="p-button-primary p-button-lg" @click="$router.push('/')">
+      Play again
+    </Button>
   </div>
 </template>
 
@@ -27,6 +30,14 @@ export default Vue.extend({
       required: true,
       default: 0,
     },
+  },
+  async mounted() {
+    const { data, error } = await this.$supabase.from("scores").insert([
+      {
+        playername: this.$store.state.user.username,
+        score: this.score,
+      },
+    ]);
   },
   data() {
     return {
