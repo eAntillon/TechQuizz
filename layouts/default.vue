@@ -5,8 +5,8 @@
     <div class="wrapper"></div>
 
     <Nuxt class="z-3" />
-    <p class="absolute bottom-0 mb-3">
-      Made by <a href="https://github.com/eAntillon" target="_blank" rel="noopener noreferrer">Erick Antillon</a>
+    <p class="absolute bottom-0 mb-3 author">
+      Created by <a href="https://github.com/eAntillon" target="_blank" rel="noopener noreferrer">Erick Antillon</a>
     </p>
   </main>
 </template>
@@ -44,5 +44,9 @@
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.author{
+  z-index: 50;
 }
 </style>
