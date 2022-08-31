@@ -1,5 +1,5 @@
 <template>
-  <div class="w-11 sm:w-8 md:w-6 xl:w-4">
+  <div class="flex w-11 sm:w-8 md:w-6 xl:w-4 justify-content-center">
     <Card class="max-w-max">
       <template #content>
         <p v-if="$fetchState.pending">Fetching mountains</p>

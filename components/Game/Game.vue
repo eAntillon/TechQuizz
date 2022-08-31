@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div v-if="!showAnswer">
+    <div v-if="!showTotalScore">
       <!-- Question -->
-      <CurrentQuestion :question="currentQuestion" :questionNumber="currentQuestionIndex+1" :next="nextQuestion" />
+      <CurrentQuestion
+        :question="currentQuestion"
+        :questionNumber="currentQuestionIndex + 1"
+        @next="nextQuestion"
+      />
     </div>
     <div v-else>
-      <!-- Question Answer -->
+      <!-- display score -->
+      <FinalScore :score="totalScore" />
     </div>
   </div>
 </template>
@@ -13,6 +18,7 @@
 <script>
 import Vue from "vue";
 import CurrentQuestion from "./CurrentQuestion.vue";
+import FinalScore from "./FinalScore.vue";
 export default Vue.extend({
   props: {
     questions: {
@@ -27,22 +33,25 @@ export default Vue.extend({
   data() {
     return {
       currentQuestionIndex: 0,
-      currentQuestion: this.questions[this.currentQuestionIndex],
-      showAnswer: false,
-      selectedAnswer: null,
+      currentQuestion: this.questions[this.currentQuestionIndex] || {},
+      showTotalScore: false,
+      totalScore: 0,
     };
   },
   methods: {
-    
-    nextQuestion() {
-      this.currentQuestionIndex++;
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.selectedAnswer = null;
-      this.showAnswer = false;
-      this.timeLeft = 30;
+    nextQuestion(newScore) {
+      if (newScore) {
+        this.totalScore += newScore;
+      }
+      this.$store.commit("user/setScore", this.totalScore);
+      this.currentQuestionIndex += 1;
+      if (this.currentQuestionIndex === this.questions.length) {
+        this.showTotalScore = true;
+      } else {
+        this.currentQuestion = this.questions[this.currentQuestionIndex];
+      }
     },
-    
   },
-  components: { CurrentQuestion },
+  components: { CurrentQuestion, FinalScore },
 });
 </script>

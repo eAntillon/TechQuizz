@@ -1,20 +1,20 @@
 <template>
   <Card
-    class="flex px-4 text-center justify-content-center align-items-center flex-column max-w-min p-0 z-4"
+    class="flex p-0 px-4 text-center justify-content-center align-items-center flex-column max-w-min z-4"
   >
     <template #content>
       <div class="flex flex-column justify-content-center align-items-center">
         <h1
-          class="flex flex-column-reverse sm:flex-row mb-4 text-4xl underline align-items-center line-height-1 justify-content-center sm:text-7xl"
+          class="flex mb-4 text-4xl underline flex-column-reverse sm:flex-row align-items-center line-height-1 justify-content-center sm:text-7xl"
         >
-          TechQuizzz
+          TechQuizz
           <img
             alt="logo"
             src="../assets/icons/robot.svg"
             class="ml-2 h-4rem sm:h-7rem"
           />
         </h1>
-        <p class="w-full sm:w-8 mb-4 sm:mb-6 text-xl text-center sm:text-2xl">
+        <p class="w-full mb-4 text-xl text-center sm:w-8 sm:mb-6 sm:text-2xl">
           Answers 10 questions about programming before the clock reaches to 0!
         </p>
         <div

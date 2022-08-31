@@ -15,3 +15,16 @@ export function getCorrectAnswers(answers: Object): Array<number> {
   );
   return corrects;
 }
+
+export function getAnswers(answers: Object): Array<Object> {
+  return Object.values(answers)
+    .filter((i) => i !== null)
+    .map((v, i) => {
+      if (v) {
+        return {
+          answer: v,
+          index: i,
+        };
+      }
+    }) as Array<Object>;
+}

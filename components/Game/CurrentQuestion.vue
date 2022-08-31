@@ -29,13 +29,21 @@
         :disabled="showAnswer && i.index !== selectedAnswer"
       />
     </div>
+    <div class="mt-4 -mb-4">
+      <Button
+        label="Next"
+        class="p-button-success"
+        @click="nextQuestion"
+        v-show="showAnswer"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import Button from "primevue/button/Button";
 import Vue from "vue";
-import { getCorrectAnswers } from "../../utils/helpers";
+import { getAnswers, getCorrectAnswers } from "../../utils/helpers";
 export default Vue.extend({
   props: {
     question: {
@@ -50,6 +58,9 @@ export default Vue.extend({
   mounted() {
     this.startTimer();
   },
+  updated() {
+    this.startTimer();
+  },
   watch: {
     // timer reaches 0
     timeLeft() {
@@ -58,24 +69,20 @@ export default Vue.extend({
         this.stopTimer();
       }
     },
+    question() {
+      console.log(this.question, this.questionNumber);
+      this.answers = getAnswers(this.question.answers)
+    },
   },
   data() {
     return {
-      answers: Object.values(this.question.answers)
-        .filter((i) => i !== null)
-        .map((v, i) => {
-          if (v) {
-            return {
-              answer: v,
-              index: i,
-            };
-          }
-        }),
+      answers: getAnswers(this.question.answers),
       selectedAnswer: null,
       correctAnswer: getCorrectAnswers(this.question.correct_answers),
       timeLeft: 30,
       timeStart: false,
       showAnswer: false,
+      score: 0,
     };
   },
   methods: {
@@ -84,6 +91,9 @@ export default Vue.extend({
       this.selectedAnswer = ans;
       this.showAnswer = true;
       this.stopTimer();
+      this.score = this.correctAnswer.includes(this.selectedAnswer)
+        ? Math.round(1 * this.timeLeft)
+        : 0;
       // check(this.selectedAnswer, this.question.correct_answers);
     },
     startTimer() {
@@ -103,7 +113,13 @@ export default Vue.extend({
       clearInterval(this.timer);
     },
     nextQuestion() {
-      this.$emit("next");
+      this.timeLeft = 15;
+      this.showAnswer = false;
+      this.selectedAnswer = null;
+      this.stopTimer();
+      this.$emit("next", this.score);
+      this.timeStart = false;
+      this.startTimer();
     },
   },
   components: { Button },
