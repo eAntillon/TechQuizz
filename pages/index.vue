@@ -3,8 +3,10 @@
     <div
       class="container w-full h-full p-4 sm:p-0 fadeindown animation-duration-400"
     >
-      <Welcome v-if="!playGame" @newGame="play"  />
-      <CreateUser v-else @cancelGame="cancel" />
+      <transition name="fade" mode="out-in">
+        <Welcome v-if="!playGame" @newGame="play" />
+        <CreateUser v-else @cancelGame="cancel" />
+      </transition>
     </div>
   </div>
 </template>
@@ -36,7 +38,6 @@ export default Vue.extend({
       this.playGame = false;
     },
   },
+  transition: "fade",
 });
 </script>
-
-<style scoped></style>

@@ -3,8 +3,8 @@
     <h3 class="-mb-2">
       Name: <span class="text-primary">{{ $store.state.user.username }}</span>
     </h3>
-    <div class="flex flex-row mb-3 align-items-center justify-content-center">
-      <h2 class="mr-2 text-4xl text-center">
+    <div class="flex flex-column-reverse mt-4 md:mt-2 md:flex-row mb-3 align-items-center justify-content-center">
+      <h2 class="mr-2 text-3xl md:text-4xl text-center">
         You scored <span class="text-primary">{{ totalScore }}</span> points!
       </h2>
       <img

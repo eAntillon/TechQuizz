@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div v-if="!showTotalScore">
-      <!-- Question -->
-      <CurrentQuestion
-        :question="currentQuestion"
-        :questionNumber="currentQuestionIndex + 1"
-        @next="nextQuestion"
-      />
-    </div>
-    <div v-else>
-      <!-- display score -->
-      <FinalScore :score="totalScore" />
-    </div>
+    <transition name="fade" mode="out-in">
+      <div v-if="!showTotalScore">
+        <!-- Question -->
+        <CurrentQuestion
+          :question="currentQuestion"
+          :questionNumber="currentQuestionIndex + 1"
+          @next="nextQuestion"
+        />
+      </div>
+      <div v-else>
+        <!-- display score -->
+        <FinalScore :score="totalScore" />
+      </div>
+    </transition>
   </div>
 </template>
 

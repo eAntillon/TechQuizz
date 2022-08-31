@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     /* border: 1px solid red; */
+    font-family: "Hind Madurai", sans-serif;
 }
 html, body {
     height: 100%;

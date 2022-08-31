@@ -1,8 +1,10 @@
 <template>
-  <div class="flex w-11 sm:w-8 md:w-6 xl:w-4 justify-content-center">
+  <div class="flex w-11 sm:w-8 md:w-6 xl:w-4 justify-content-center alignt-items-center">
     <Card class="max-w-max">
       <template #content>
-        <p v-if="$fetchState.pending">Fetching mountains</p>
+        <div v-if="$fetchState.pending" class="w-12">
+          <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
+        </div>
         <Game v-else :questions="questions" />
       </template>
     </Card>

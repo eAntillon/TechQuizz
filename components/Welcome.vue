@@ -59,10 +59,4 @@ h1 {
   font-family: "Montserrat", sans-serif;
   color: #2b2c34;
 }
-p {
-  font-family: "Hind Madurai", sans-serif;
-  color: #2b2c34;
-}
-
-
 </style>

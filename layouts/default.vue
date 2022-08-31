@@ -5,6 +5,9 @@
     <div class="wrapper"></div>
 
     <Nuxt class="z-3" />
+    <p class="absolute bottom-0 mb-3">
+      Made by <a href="https://github.com/eAntillon" target="_blank" rel="noopener noreferrer">Erick Antillon</a>
+    </p>
   </main>
 </template>
 
@@ -32,5 +35,14 @@
   .wrapper {
     animation: scroll 200s linear infinite;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
