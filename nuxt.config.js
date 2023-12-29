@@ -47,7 +47,7 @@ export default {
       {
         supabaseUrl: "https://zbmimsbcbtvfqpnxymht.supabase.co",
         supabaseKey:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibWltc2JjYnR2ZnFwbnh5bWh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE3MTUzMDgsImV4cCI6MTk3NzI5MTMwOH0.YGsckZdyO23pbeGKGG8EEUUJOMALEVHEF9zoSBd11iE",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibWltc2JjYnR2ZnFwbnh5bWh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNzQ3NjQsImV4cCI6MjAxNDk1MDc2NH0.xmc40DEQsn315InBYYJNSKeDtAuED-B2s0QJIeLYNbo",
       },
     ],
   ],
@@ -61,6 +61,9 @@ export default {
     theme: "lara-light-purple",
     ripple: true,
     // components: [/* What components you want */]
+  },
+  server: {
+    host: "0.0.0.0"
   },
   env: {
     quizz_api_url: "https://quizapi.io/api/v1/questions",
